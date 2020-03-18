@@ -28,4 +28,8 @@ public class Controller {
 
     public void init(){
     }
+
+    public View getView() {
+        return view;
+    }
 }
