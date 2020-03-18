@@ -12,7 +12,7 @@ public class SuperscriptAction extends StyledEditorKit.StyledTextAction{
     public SuperscriptAction(String nm) {
         super(nm);
     }
-
+    
     public SuperscriptAction(){
         super("");
     }
