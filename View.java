@@ -48,7 +48,7 @@ public class View extends JFrame implements ActionListener {
         tabbedPane.add("HTML", jScrollPane);
         JScrollPane jScrollPane1 = new JScrollPane(plainTextPane);
         tabbedPane.add("Текст", jScrollPane1);
-        tabbedPane.setPreferredSize(new Dimension(600, 300));
+        tabbedPane.setPreferredSize(new Dimension(300, 300));
         tabbedPane.addChangeListener(new TabbedPaneChangeListener(this));
         getContentPane().add(tabbedPane, BorderLayout.CENTER);
 
