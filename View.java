@@ -29,8 +29,21 @@ public class View extends JFrame implements ActionListener {
 
     }
     @Override
-    public void actionPerformed(ActionEvent e) {
-
+    public void actionPerformed(ActionEvent actionEvent) {
+        String command = actionEvent.getActionCommand();
+        if(command.equals("Новый")){
+            controller.createNewDocument();
+        } else if(command.equals("Открыть")){
+            controller.openDocument();
+        } else if(command.equals("Сохранить")){
+            controller.saveDocument();
+        } else if(command.equals("Сохранить как...")){
+            controller.saveDocumentAs();
+        } else if(command.equals("Выход")){
+            controller.exit();
+        } else if(command.equals("О программе")){
+            showAbout();
+        }
     }
 
     public Controller getController() {
@@ -93,7 +106,13 @@ public class View extends JFrame implements ActionListener {
        return undoManager.canRedo();
     }
 
-    public void selectedTabChanged(){}
+    public void selectedTabChanged(){
+        if(tabbedPane.getSelectedIndex() == 0){
+            controller.setPlainText(plainTextPane.getText());
+        } else if(tabbedPane.getSelectedIndex() == 1){
+        plainTextPane.setText(controller.getPlainText());}
+        resetUndo();
+    }
 
     public void undo(){
         try{
@@ -111,7 +130,27 @@ public class View extends JFrame implements ActionListener {
         }
     }
 
+    public boolean isHtmlTabSelected(){
+        return tabbedPane.getSelectedIndex() == 0;
+    }
+
     public void resetUndo(){
         undoManager.discardAllEdits();
     }
+
+    public void selectHtmlTab(){
+        tabbedPane.setSelectedIndex(0);
+        resetUndo();
+    }
+
+    public void update(){
+        htmlTextPane.setDocument(controller.getDocument());
+    }
+
+    public void showAbout(){
+        JOptionPane.showMessageDialog(getContentPane(), "Be careful", "Stop", JOptionPane.INFORMATION_MESSAGE);
+    }
+
+
+
 }
